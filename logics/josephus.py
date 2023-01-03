@@ -2,7 +2,8 @@
 from structures.linked_list import CircularSinglyLinkedList
 from structures.queue import Queue
 
-def josephus(n:int, k:int):
+
+def josephus(n:int, k:int) -> Queue:
     """Returns the last person standing in the circle."""
     people = CircularSinglyLinkedList()
     stages = Queue()
@@ -16,4 +17,4 @@ def josephus(n:int, k:int):
         current.next = current.next.next
         current = current.next
     stages.enqueue(people)
-    return current.data, stages
+    return stages
