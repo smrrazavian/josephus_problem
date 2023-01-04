@@ -51,4 +51,3 @@ class CircularSinglyLinkedList:
                 print(current.data, end=" ")
                 current = current.next
             print(current.data)
-    
