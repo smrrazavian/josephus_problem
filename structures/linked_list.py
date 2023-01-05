@@ -47,7 +47,9 @@ class CircularSinglyLinkedList:
             print("List is empty.")
         else:
             current = self.head
-            while current.next != self.head:
+            print(current.data, end=" ")
+            current = current.next
+            while current != self.head:
                 print(current.data, end=" ")
                 current = current.next
-            print(current.data)
+            print()
