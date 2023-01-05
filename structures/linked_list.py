@@ -2,16 +2,16 @@
 
 class Node:
     """Node class."""
-    def __init__(self, data):
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
 
 class CircularSinglyLinkedList:
     """Circular Singly Linked List class."""
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
 
-    def insert(self, data):
+    def insert(self, data: int) -> None:
         """Inserts a node in the linked list."""
         new_node = Node(data)
         if self.head is None:
@@ -24,7 +24,7 @@ class CircularSinglyLinkedList:
             current.next = new_node
             new_node.next = self.head
 
-    def delete(self, data):
+    def delete(self, data: int) -> None:
         """Deletes a node from the linked list."""
         if self.head is None:
             print("List is empty.")
@@ -41,7 +41,7 @@ class CircularSinglyLinkedList:
                     current.next = current.next.next
                 current = current.next
 
-    def display(self):
+    def display(self) -> None:
         """Displays the linked list."""
         if self.head is None:
             print("List is empty.")
