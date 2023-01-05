@@ -33,9 +33,3 @@ def josephus(n: int, k: int) -> Queue:
     else:
         make_copy(stages, people)
     return stages
-
-if __name__ == "__main__":
-    q = josephus(10, 3)
-    while not q.is_empty():
-        print(q.size())
-        q.dequeue().display()
