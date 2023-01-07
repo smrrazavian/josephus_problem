@@ -45,8 +45,8 @@ class JosephusCanvas():
     
     def draw_people(self, x: int, y: int, r: int, color: str, text: str) -> None:
         """Draws a circle on the canvas."""
-        self.canvas.create_oval(x-r, y-r, x+r, y+r, fill=color)
-        self.canvas.create_text(x, y, text=text, fill="white")
+        self.canvas.create_oval(x, y, x+r/2, y+r/2, fill=color)
+        self.canvas.create_text(x+r/4, y+r/4, text=text, fill="white")
     
     def draw_table(self):
         """Draws the table on the canvas."""
@@ -56,8 +56,8 @@ class JosephusCanvas():
             r = self.detect_r(people_count)[0]
             theta = 2 * math.pi / people_count
             for i in range(people_count):
-                x = self.width/2 + r * math.cos(i*theta)
-                y = self.height/2 + r * math.sin(i*theta)
+                x = self.width/2 + r * math.cos(i*theta) - r/2
+                y = self.height/2 + r * math.sin(i*theta) - r/2
                 people_list = str(people).split(" ")
                 person = people_list[i]
                 self.draw_people(x, y, r, "blue", person)
@@ -70,15 +70,22 @@ class JosephusCanvas():
     @staticmethod
     def detect_r(n:int) -> tuple:
         """Detects the radius of the circle."""
-        if n <= 20:
-            r = 20
-            time = 800
-        elif n <= 50:
-            r = 10
-            time = 1000
-        else:
-            r = 5
-            time = 2000
+        # if n <= 20:
+        #     r = 100
+        #     time = 800
+        # elif n <= 50:
+        #     r = 70
+        #     time = 1000
+        # else:
+        #     r = 30
+        #     time = 2000
+        if n >= 50 :
+            r = n*3/4
+        elif n >= 20 :
+            r = n*2
+        else :
+            r = 75 
+        time = 1000
         return r, time
 
 if __name__ == "__main__":
