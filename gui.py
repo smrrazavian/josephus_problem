@@ -78,9 +78,9 @@ class JosephusCanvas():
             self.root.after(time)
             if self.stages.size() != 0:
                 self.canvas.delete("all")
-        # if self.stages.size() == 1 :
+        self.canvas.delete("all")
         self.canvas.create_oval(self.height/2-60, self.width/2-60, self.height/2+60, self.width/2+60, fill="gold")
-        self.canvas.create_text(self.width/2, self.height/2, text="winner", fill="black")
+        self.canvas.create_text(self.width/2, self.height/2, text=f"winner is {people}", fill="black")
 
     @staticmethod
     def detect_r(n:int) -> list:
@@ -99,9 +99,7 @@ class JosephusCanvas():
             time = 2000
         metrics = [r, time, r_2]
         return metrics
-    
-    # def show_winner(self, text: str):
-    #     self.draw_people(self.width/2, self.height/2, 20, text=text)
+
 
 if __name__ == "__main__":
     JosephusCanvas(800, 800)
