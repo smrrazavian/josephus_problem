@@ -22,7 +22,7 @@ def josephus(n: int, k: int) -> Queue:
     current = people.head
     last_eliminated = 0
     while current.next != current:
-        for _ in range(k-2):
+        for _ in range(k-1):
             current = current.next
         eliminated = current.next.data
         people.delete(eliminated)
