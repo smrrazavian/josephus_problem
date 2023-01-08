@@ -13,25 +13,25 @@ class JosephusCanvas():
         self.root.geometry(f"{self.width}x{self.height + 200}")
         self.root.resizable(False, False)
         self.get_inputs().pack()
-        self.canvas = tk.Canvas(self.root, width=self.width, height=self.height, bg="white")
+        self.canvas = tk.Canvas(self.root, width=self.width, height=self.height, bg="aliceblue")
         self.canvas.pack()
         self.root.mainloop()
     
     def get_inputs(self) -> tk.LabelFrame:
         """Gets the inputs from the user."""
-        frame = tk.LabelFrame(self.root, text="Inputs")
+        frame = tk.LabelFrame(self.root, text="Inputs", bg="aliceblue", foreground="teal")
         frame.grid()
-        n_label = tk.Label(frame, text="Number of people: ")
+        n_label = tk.Label(frame, text="Number of people: ", bg="aliceblue")
         n_label.grid(row=0, column=0)
         self.n_entry = tk.Entry(frame)
         self.n_entry.grid(row=0, column=1)
-        k_label = tk.Label(frame, text="Elimination step: ")
+        k_label = tk.Label(frame, text="Elimination step: ", bg="aliceblue")
         k_label.grid(row=1, column=0)
         self.k_entry = tk.Entry(frame)
-        self.k_entry.grid(row=1, column=1)
-        self.submit_button = tk.Button(frame, text="Submit", command=self.submit)
+        self.k_entry.grid(row=1, column=1,)
+        self.submit_button = tk.Button(frame, text="Submit", command=self.submit, fg="teal", bg="aliceblue")
         self.submit_button.grid(row=2, column=0, columnspan=2)
-        self.reset_button = tk.Button(frame, text="Reset", command=self.reset)
+        self.reset_button = tk.Button(frame, text="Reset", command=self.reset, fg="teal", bg="aliceblue")
         self.reset_button.grid(row=3, column=0, columnspan=2)
         return frame
     
@@ -56,8 +56,8 @@ class JosephusCanvas():
     
     def draw_people(self, x: int, y: int, r: int, color: str, text: str) -> None:
         """Draws a circle on the canvas."""
-        self.canvas.create_oval(x, y, x+r/2, y+r/2, fill=color)
-        self.canvas.create_text(x+r/4, y+r/4, text=text, fill="white")
+        self.canvas.create_oval(x, y, x+r/2, y+r/2, fill="cadetblue")
+        self.canvas.create_text(x+r/4, y+r/4, text=text, fill="black")
     
     def draw_table(self):
         """Draws the table on the canvas."""
@@ -72,12 +72,15 @@ class JosephusCanvas():
                 y = self.height/2 + r_2 * math.sin(i*theta) - r/2
                 people_list = str(people).split(" ")
                 person = people_list[i]
-                self.draw_people(x, y, r, "blue", person)
+                self.draw_people(x, y, r, "SkyBlue3", person)
             self.root.update()
             time = self.detect_r(people_count)[1]
             self.root.after(time)
             if self.stages.size() != 0:
                 self.canvas.delete("all")
+        # if self.stages.size() == 1 :
+        self.canvas.create_oval(self.height/2-60, self.width/2-60, self.height/2+60, self.width/2+60, fill="gold")
+        self.canvas.create_text(self.width/2, self.height/2, text="winner", fill="black")
 
     @staticmethod
     def detect_r(n:int) -> list:
@@ -96,6 +99,9 @@ class JosephusCanvas():
             time = 2000
         metrics = [r, time, r_2]
         return metrics
+    
+    # def show_winner(self, text: str):
+    #     self.draw_people(self.width/2, self.height/2, 20, text=text)
 
 if __name__ == "__main__":
     JosephusCanvas(800, 800)
